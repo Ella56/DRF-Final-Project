@@ -1,0 +1,6 @@
+asgiref==3.8.1
+Django==4.2
+pillow==10.4.0
+setuptools==70.0.0
+sqlparse==0.5.1
+tzdata==2024.2
