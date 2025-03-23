@@ -21,10 +21,13 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('root.urls')),
-    path('blog',include('blog.urls')),
-    path('service',include('service.urls')),
-    path('portfolio',include('portfolio.urls')),
-    path('contact',include('contact.urls'))
+    path('blog/',include('blog.urls')),
+    path('service/',include('service.urls')),
+    path('portfolio/',include('portfolio.urls')),
+    path('cart/', include("cart.urls")),
+    path('payment/', include("payment.urls")),
+    path('captcha/', include('captcha.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

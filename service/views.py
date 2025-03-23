@@ -1,9 +1,12 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
 # Create your views here.
-def service(request):
-    return render(request,'service/services.html')
 
 
-def service_detail(request):
-    return render(request,'service/service-details.html')
+class ServiceView(ListView):
+    pass
+
+
+class ServiceDetailView(DetailView):
+    pass
