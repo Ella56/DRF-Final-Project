@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, FormView
+from .forms import ContactForm
 
 # Create your views here.
 class HomeView(TemplateView):

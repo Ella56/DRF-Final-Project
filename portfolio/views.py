@@ -1,9 +1,10 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from .models import Portfolio
 
 # Create your views here.
-def portfolio(request):
-    return render(request,'portfolio/portfolio.html')
+class PortfolioView(ListView):
+   pass
 
-def portfolio_details(request):
-    return render(request,'portfolio/portfolio-details.htm')
+class PortfolioDetailsView(DetailView):
+    pass
