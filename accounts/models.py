@@ -1,16 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser, PermissionsMixin, BaseUserManager, UserManager
+from django.contrib.auth.models import User
 
-# Create your models here.
-
-
-# class CustomeUserManager(BaseUserManager):
-#     pass
-
-
-# class User(AbstractBaseUser, PermissionsMixin):
-#     pass
-
-
-# class Profile(models.Model):
-#     pass
+class Profile(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    username=models.CharField(max_length=100,default="")
+    logo=models.ImageField(upload_to="profile",default="default.jpg")
+    phone=models.CharField(max_length=100,default="")
+    address=models.TextField(default="")
+    postal_code=models.CharField(max_length=100,default="")
+    status=models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.username
