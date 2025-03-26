@@ -12,12 +12,12 @@ class Special_services(models.Model):
         return self.title
 
 class Service(models.Model):
-    title=models.CharField(max_length=100,default="")
-    content_one=models.TextField(default="")
-    content_two=models.TextField(default="")
+    title=models.CharField(max_length=100)
+    content_one=models.TextField()
+    content_two=models.TextField()
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
-    content_three=models.TextField(default="")
-    spesials=models.ManyToManyField(Special_services)
+    content_three=models.TextField()
+    specials=models.ManyToManyField(Special_services)
     status=models.BooleanField(default=False)
 
 
