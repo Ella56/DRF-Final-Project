@@ -154,7 +154,7 @@ EMAIL_HOST_PASSWORD = ""
 
 
 
-# AUTH_USER_MODEL = "accounts.User"
+AUTH_USER_MODEL = "accounts.User"
 
 REST_FRAMEWORK = {
 
@@ -164,5 +164,3 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
-
-AUTH_USER_MODEL = "accounts.User"
