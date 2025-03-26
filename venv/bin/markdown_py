@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/home/elham/DRF Projects/DRF-Final-Project/venv/bin/python3" "$0" "$@"
+'''exec' "/home/elham/Desktop/DRF Project/DRF-Final-Project/venv/bin/python3" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re
