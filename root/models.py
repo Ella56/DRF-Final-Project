@@ -5,8 +5,8 @@ from django.db import models
 class About(models.Model):
     title=models.CharField(max_length=100)
     image=models.ImageField(upload_to="about",default="default.jpg")
-    content_one=models.TextField(default="")
-    content_two=models.TextField(default="")
+    content_one=models.TextField()
+    content_two=models.TextField()
     video=models.URLField()
 
     def __str__(self):
@@ -16,7 +16,7 @@ class Contact(models.Model):
     name=models.CharField(max_length=100) 
     email=models.EmailField()   
     subject=models.CharField(max_length=100)
-    message=models.TextField(default="")
+    message=models.TextField()
 
     def __str__(self):
         return self.name
@@ -25,7 +25,7 @@ class Contact(models.Model):
 class Team(models.Model):
     image=models.ImageField(upload_to="team",default="default.jpg")
     name=models.CharField(max_length=100)
-    job_position=models.TextField(default="")
+    job_position=models.TextField()
     x_pllatform=models.CharField(max_length=100)
     instagram=models.CharField(max_length=100)
     linkdin=models.CharField(max_length=100)
@@ -54,11 +54,11 @@ class Star(models.Model):
         return str(self.count)
 
 class Testimonials(models.Model):
-     name=models.CharField(max_length=100,default="")
-     job=models.CharField(max_length=100,default="")
+     name=models.CharField(max_length=100)
+     job=models.CharField(max_length=100)
      image=models.ImageField(upload_to="testimonials",default="default.jpg")
      stars=models.ForeignKey(Star,on_delete=models.CASCADE)
-     content=models.TextField(default="")
+     content=models.TextField()
      status=models.BooleanField(default=False)
     
 

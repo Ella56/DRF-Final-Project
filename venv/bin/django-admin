@@ -1,4 +1,6 @@
-#!/home/elibt/Desktop/DRF-Final-Project/venv/bin/python3
+#!/bin/sh
+'''exec' "/home/elham/Desktop/DRF Project/DRF-Final-Project/venv/bin/python3" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys
