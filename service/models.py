@@ -13,9 +13,12 @@ class Special_services(models.Model):
 
 class Service(models.Model):
     title=models.CharField(max_length=100)
+    title_zero=models.CharField(max_length=100)
+    image=models.ImageField(upload_to="service", default="default.jpg")
     content_one=models.TextField()
+    content_zero=models.TextField()
     content_two=models.TextField()
-    category=models.ForeignKey(Category,on_delete=models.CASCADE)
+    category=models.ManyToManyField(Category)
     content_three=models.TextField()
     specials=models.ManyToManyField(Special_services)
     status=models.BooleanField(default=False)
@@ -23,5 +26,9 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+    def truncate_chars(self):
+        return self.content_one[:100]
 
 
