@@ -36,50 +36,62 @@
     
           <div class="tab-content" id="authTabsContent">
             <!-- Login Form -->
+
             <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-              <form>
+              <form method="post" action="">
+                {% csrf_token %}
                 <div class="mb-3">
                   <label for="loginEmail" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email">
+                  <input type="email" name="email" class="form-control" id="loginEmail" placeholder="Enter your email">
                 </div>
                 <div class="mb-3">
                   <label for="loginPassword" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password">
+                  <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Enter your password">
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Login</button>
+                <button type="submit" class="btn btn-primary w-100", name="login">Login</button>
               </form>
             </div>
     
             <!-- Sign Up Form -->
             <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
-              <form>
+              <form method="post" action="">
+                {% csrf_token %}
                 <div class="mb-3">
                   <label for="signupEmail" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="signupEmail" placeholder="Enter your email">
+                  <input type="email" name="email" class="form-control" id="signupEmail" placeholder="Enter your email">
                 </div>
                 <div class="mb-3">
                   <label for="signupPassword" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="signupPassword" placeholder="Create a password">
+                  <input type="password" name="password1" class="form-control" id="signupPassword" placeholder="Create a password">
                 </div>
                 <div class="mb-3">
                   <label for="signupPassword" class="form-label">Confirm Password</label>
-                  <input type="password" class="form-control" id="signupPassword" placeholder="Confirm password">
+                  <input type="password" name="password2" class="form-control" id="signupPassword" placeholder="Confirm password">
                 </div>
-                <button type="submit" class="btn btn-success w-100">Sign Up</button>
+                <button type="submit" class="btn btn-success w-100", name="signup">Sign Up</button>
               </form>
             </div>
     
             <!-- Forgot Password Form -->
             <div class="tab-pane fade" id="forgot" role="tabpanel" aria-labelledby="forgot-tab">
-              <form>
+              <form method="post" action="">
+                {% csrf_token %}
                 <div class="mb-3">
                   <label for="forgotEmail" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="forgotEmail" placeholder="Enter your email to reset password">
+                  <input type="email" name="email" class="form-control" id="forgotEmail" placeholder="Enter your email to reset password">
                 </div>
-                <button type="submit" class="btn btn-warning w-100">Reset Password</button>
+                <button type="submit" class="btn btn-warning w-100" name="reset-password">Reset Password</button>
               </form>
             </div>
+
+              {% for message in messages %}
+                <p style="color:red;">{{ message }}</p>
+              {% endfor %}
+
           </div>
+
+          
+
         </div>
       </div>
     </section>
