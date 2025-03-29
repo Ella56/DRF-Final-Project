@@ -86,6 +86,7 @@
 
             {% if request.user.is_authenticated %}
             <li><a href="#">logged as {{ request.user.email }}</a></li>
+            <li><a href={% url "accounts:edit-profile" %}>Profile</a></li>
             <li><a href={% url "accounts:logout" %}>logout</a></li>
             {% else %}
             <li><a href={% url "accounts:login-signup" %}>Login/Sign Up</a></li>

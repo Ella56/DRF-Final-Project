@@ -24,14 +24,14 @@ class ChangePassForm(forms.Form):
     password2 = forms.CharField(max_length=15)
 
 
-
-
 class ConfirmPassForm(forms.Form):
     pass1 = forms.CharField(max_length=15)
     pass2 = forms.CharField(max_length=15)
 
+
+
 class EditProfile(forms.ModelForm):
-    pass
-#       class Meta:
-#         model = Profile
-#         fields = ["first_name", "last_name", "phone", "address", "postal_code"]
+      
+      class Meta:
+        model = Profile
+        fields = ["fname", "lname", "phone", "address", "postal_code"]
