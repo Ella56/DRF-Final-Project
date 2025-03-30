@@ -44,7 +44,7 @@ class LoginView(View):
             if form.is_valid():
                 username = form.cleaned_data['email']
                 password = form.cleaned_data['password']
-                user = authenticate(username=username, password=password)
+                user = authenticate(username = username, password = password)
                 if user is not None:
                     login(self.request, user)
                     messages.add_message(request,messages.SUCCESS, "Account created successfully!")
@@ -106,32 +106,28 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
     
 
 
-class ChangePasswordView(LoginRequiredMixin, FormView):
+# class ChangePasswordView(LoginRequiredMixin, FormView):
 
-    form_class = ChangePassForm
-    template_name = "accounts/change_password.html"
-    success_url="/"
+#     form_class = ChangePassForm
+#     template_name = "accounts/change_password.html"
+#     success_url="/"
 
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user
-        return kwargs
+#     def get_form_kwargs(self):
+#         kwargs = super().get_form_kwargs()
+#         kwargs['user'] = self.request.user
+#         return kwargs
     
 
-    def form_valid(self, form):
-        form.save()
-        update_session_auth_hash(self.request, self.request.user)
-        messages.add_message(self.request, messages.SUCCESS, "Your password has been successfully updated")
-        return super().form_valid(form)
+#     def form_valid(self, form):
+#         form.save()
+#         update_session_auth_hash(self.request, self.request.user)
+#         messages.add_message(self.request, messages.SUCCESS, "Your password has been successfully updated")
+#         return super().form_valid(form)
     
-    def form_invalid(self, form):
-        messages.add_message(self.request, messages.ERROR, "Please correct the errors")
-        return redirect(self.request.path_info)
-    
-
-    
-    
+#     def form_invalid(self, form):
+#         messages.add_message(self.request, messages.ERROR, "Please correct the errors")
+#         return redirect(self.request.path_info)
     
 
 

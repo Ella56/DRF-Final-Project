@@ -6,7 +6,7 @@ from .models import User, Profile
 
 class LoginForm(forms.Form):
     email = forms.EmailField()
-    password = forms.PasswordInput()
+    password = forms.CharField(widget=forms.PasswordInput)
 
 
 class SignUpForm(UserCreationForm):

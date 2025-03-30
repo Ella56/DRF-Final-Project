@@ -48,12 +48,13 @@
                   <label for="loginPassword" class="form-label">Password</label>
                   <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Enter your password">
                 </div>
+                <div class="mb-3"></div>
                 <button type="submit" class="btn btn-primary w-100", name="login">Login</button>
 
                 {% if request.user.is_authenticated %}
                 <a class="btn btn-secondary w-100" href={% url "accounts:edit-profile" %}>Edit Profile</a>
                 {% endif %}
-                
+              </div>
               </form>
             </div>
     
@@ -94,10 +95,11 @@
               </form>
             </div>
 
-              {% for message in messages %}
-                <p style="color:red;">{{ message }}</p>
-              {% endfor %}
-
+            {% for message in messages %}
+            <div class="container section-title" style="color:red">
+                <h4>{{message}}</h4>
+            {% endfor %}
+             </div>
           </div>
 
           
