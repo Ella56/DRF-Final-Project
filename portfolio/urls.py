@@ -5,5 +5,8 @@ app_name = 'portfolio'
 
 urlpatterns = [
     path("api/v1/", include("portfolio.api.v1.urls")),
+    path('',PortfolioView.as_view(),name='portfolio'),
+    path('details',PortfolioDetailsView.as_view(),name='portfolio-details'),
+    path('category/<str:category>' ,PortfolioView.as_view(),name='portfolio-category' )
 
 ]

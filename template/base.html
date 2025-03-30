@@ -68,22 +68,23 @@
 
         <nav id="navmenu" class="navmenu">
           <ul>
+
             <li><a href={% url 'home:home' %}>Home<br></a></li>
             <li><a href={% url 'home:about' %}>About</a></li>
             <li><a href={% url 'service:service' %}>Services</a></li>
             <li><a href={% url 'home:testimonials' %}>Testimonials</a></li>
-            <li><a href={}>Portfolio</a></li>
-            <li><a href={}>Blog</a></li>
+            <li><a href={% url 'portfolio:portfolio' %}>Portfolio</a></li>
+            <li><a href={% url 'blog:blog' %}>Blog</a></li>
+
             <li class="dropdown"><a href="#"><span>Category</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
-                <li><a href="#">Dropdown 1</a></li>
-                <li><a href="#">Dropdown 2</a></li>
-                <li><a href="#">Dropdown 3</a></li>
-                <li><a href="#">Dropdown 4</a></li>
+                {% for category in categories %}
+                <li><a href={% url 'portfolio:portfolio-category' category=category.name %}>{{category.name}}</a></li>
+                {% endfor %}
               </ul>
             </li>
 
-            <li><a href={}>Contact</a></li>
+            <li><a href={% url 'home:contact' %}>Contact</a></li>
 
             {% if request.user.is_authenticated %}
             <li><a href="#">logged as {{ request.user.email }}</a></li>
@@ -92,8 +93,6 @@
             {% else %}
             <li><a href={% url "accounts:login-signup" %}>Login/Sign Up</a></li>
             {% endif %}
-            <li><a href={% url 'home:contact' %}>Contact</a></li>
-            <li><a href="login.html">Login/Sign Up</a></li>
             <li><a href="cart.html">Cart items</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
