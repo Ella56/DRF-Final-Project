@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, AbstractBaseUser, PermissionsMixin, BaseUserManager, UserManager
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.contrib.auth.models import User
 
 class CustomeUserManager(BaseUserManager):
@@ -48,12 +48,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     
 class Profile(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    username=models.CharField(max_length=100)
-    logo=models.ImageField(upload_to="profile",default="default.jpg")
+    fname=models.CharField(max_length=20)
+    lname=models.CharField(max_length=30)
     phone=models.CharField(max_length=100,)
-    address=models.TextField(default="")
+    address=models.TextField()
     postal_code=models.CharField(max_length=100)
     status=models.BooleanField(default=False)
     
     def __str__(self):
-        return self.username
+        return self.user.email
