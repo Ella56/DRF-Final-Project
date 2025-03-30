@@ -8,11 +8,11 @@
     <!-- Page Title -->
     <div class="page-title dark-background">
       <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">About</h1>
+        <h1 class="mb-2 mb-lg-0">Login/Signup</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li class="current">About</li>
+            <li class="current">Login/Signup</li>
           </ol>
         </nav>
       </div>
@@ -36,50 +36,74 @@
     
           <div class="tab-content" id="authTabsContent">
             <!-- Login Form -->
+
             <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-              <form>
+              <form method="post" action="">
+                {% csrf_token %}
                 <div class="mb-3">
                   <label for="loginEmail" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email">
+                  <input type="email" name="email" class="form-control" id="loginEmail" placeholder="Enter your email">
                 </div>
                 <div class="mb-3">
                   <label for="loginPassword" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password">
+                  <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Enter your password">
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Login</button>
+                <div class="mb-3"></div>
+                <button type="submit" class="btn btn-primary w-100", name="login">Login</button>
+
+                {% if request.user.is_authenticated %}
+                <a class="btn btn-secondary w-100" href={% url "accounts:edit-profile" %}>Edit Profile</a>
+                {% endif %}
+              </div>
               </form>
             </div>
     
             <!-- Sign Up Form -->
             <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
-              <form>
+              <form method="post" action="">
+                {% csrf_token %}
                 <div class="mb-3">
                   <label for="signupEmail" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="signupEmail" placeholder="Enter your email">
+                  <input type="email" name="email" class="form-control" id="signupEmail" placeholder="Enter your email">
                 </div>
                 <div class="mb-3">
                   <label for="signupPassword" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="signupPassword" placeholder="Create a password">
+                  <input type="password" name="password1" class="form-control" id="signupPassword" placeholder="Create a password">
                 </div>
                 <div class="mb-3">
                   <label for="signupPassword" class="form-label">Confirm Password</label>
-                  <input type="password" class="form-control" id="signupPassword" placeholder="Confirm password">
+                  <input type="password" name="password2" class="form-control" id="signupPassword" placeholder="Confirm password">
                 </div>
-                <button type="submit" class="btn btn-success w-100">Sign Up</button>
+                <button type="submit" class="btn btn-success w-100", name="signup">Sign Up</button>
+
+                {% if request.user.is_authenticated %}
+                <a class="btn btn-secondary w-100" href={% url "accounts:edit-profile" %}>Edit Profile</a>
+                {% endif %}
+                
               </form>
             </div>
     
             <!-- Forgot Password Form -->
             <div class="tab-pane fade" id="forgot" role="tabpanel" aria-labelledby="forgot-tab">
-              <form>
+              <form method="post" action="">
+                {% csrf_token %}
                 <div class="mb-3">
                   <label for="forgotEmail" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="forgotEmail" placeholder="Enter your email to reset password">
+                  <input type="email" name="email" class="form-control" id="forgotEmail" placeholder="Enter your email to reset password">
                 </div>
-                <button type="submit" class="btn btn-warning w-100">Reset Password</button>
+                <button type="submit" class="btn btn-warning w-100" name="reset-password">Reset Password</button>
               </form>
             </div>
+
+            {% for message in messages %}
+            <div class="container section-title" style="color:red">
+                <h4>{{message}}</h4>
+            {% endfor %}
+             </div>
           </div>
+
+          
+
         </div>
       </div>
     </section>
