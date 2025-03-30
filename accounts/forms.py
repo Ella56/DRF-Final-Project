@@ -20,8 +20,12 @@ class ResetPassForm(forms.Form):
 
 
 class ChangePassForm(forms.Form):
+    current_assword = forms.CharField(max_length=15)
     password1 = forms.CharField(max_length=15)
     password2 = forms.CharField(max_length=15)
+
+
+    
 
 
 class ConfirmPassForm(forms.Form):

@@ -34,6 +34,9 @@
             </div>
             <button type="submit" class="btn btn-primary w-100">Update</button>
           </form>
+          {% for message in messages %}
+                <p style="color:red;">{{ message }}</p>
+          {% endfor %}
         </div>
       </main>
 

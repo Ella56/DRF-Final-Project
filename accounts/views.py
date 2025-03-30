@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LoginForm, SignUpForm, ChangePassForm, ResetPassForm, ConfirmPassForm, EditProfile
 from .models import User, Profile
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth import password_validation
 # from rest_framework.authtoken.models import Token
@@ -106,36 +106,36 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
     
 
 
-class ChangePasswordView(LoginRequiredMixin, UpdateView):
-    model = User
+class ChangePasswordView(LoginRequiredMixin, FormView):
+
     form_class = ChangePassForm
     template_name = "accounts/change_password.html"
     success_url="/"
 
 
-    pk_url_kwarg = None
-
-    def get_object(self, queryset = None):
-        user = User.objects.get(user=self.request)
-        return user
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
     
 
-    # def form_valid(self, form):
-    #     form = super().form_valid(form)
-    #     password1=form.cleaned_data['password1']
-    #     password2=form.cleaned_data['password2']
-    #     if (password1 == password2) and not (user.check_password(password1)) :
-    #             try:
-    #                 password_validation.validate_password(password1)
-    #             except:
-    #                 messages.add_message(request, messages.ERROR, "Invalid password validation")
-    #                 return redirect(request.path_info)
-    #             else:
-    #                 user.set_password(password1)
-    #                 user.save()
-    #                 login(request, user)
-    #                 messages.add_message(request, messages.SUCCESS, "password change successfully")
-    #                 return redirect(request.path_info)
-    #         else:
-    #             messages.add_message(request, messages.ERROR, "password and pass2 must be similar or different between old and new")
-    #             return redirect(request.path_info)
+    def form_valid(self, form):
+        form.save()
+        update_session_auth_hash(self.request, self.request.user)
+        messages.add_message(self.request, messages.SUCCESS, "Your password has been successfully updated")
+        return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, "Please correct the errors")
+        return redirect(self.request.path_info)
+    
+
+    
+    
+    
+
+
+
+    
+
+    
