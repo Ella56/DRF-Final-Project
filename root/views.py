@@ -4,13 +4,21 @@ from django.core.paginator import Paginator
 from .forms import ContactForm
 from django.contrib import messages
 from .models import Team, Client, Testimonials
+from service.models import Service
+
 
 # Create your views here.
 class HomeView(TemplateView):
     template_name = 'root/index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context ['services'] = Service.objects.filter(status=True)[:3]
+
+        return context
 
 class AboutView(TemplateView):
+
     template_name = 'root/about.html'
 
     def get_context_data(self, **kwargs):
@@ -60,3 +68,5 @@ class TestimonialView(ListView):
         context["last"] = last
         
         return context
+
+

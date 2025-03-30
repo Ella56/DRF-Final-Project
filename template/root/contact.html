@@ -47,7 +47,7 @@
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
                   <h4>Email:</h4>
-                  <p>info@example.com</p>
+                  <p>shafiei@example.com</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -66,6 +66,7 @@
           <div class="col-lg-8">
             <form method="post">
               {% csrf_token %}
+
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required="">
@@ -86,6 +87,7 @@
             {% for message in messages %}
             <div class="container section-title" style="color:red">
             <h4>{{message}}</h4>
+
             {% endfor %}
           </div><!-- End Contact Form -->
 
