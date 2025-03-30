@@ -56,8 +56,13 @@
                 {% endif %}
               </div>
               </form>
+              {% for message in messages %}
+              <div class="mb-3" style="color:red">
+                  <h4>{{message}}</h4>
+              
             </div>
-    
+            {% endfor %}
+
             <!-- Sign Up Form -->
             <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
               <form method="post" action="">
@@ -81,8 +86,12 @@
                 {% endif %}
                 
               </form>
+              {% for message in messages %}
+              <div class="mb-3" style="color:red">
+                  <h4>{{message}}</h4>
+              
             </div>
-    
+            {% endfor %}
             <!-- Forgot Password Form -->
             <div class="tab-pane fade" id="forgot" role="tabpanel" aria-labelledby="forgot-tab">
               <form method="post" action="">
@@ -93,13 +102,15 @@
                 </div>
                 <button type="submit" class="btn btn-warning w-100" name="reset-password">Reset Password</button>
               </form>
+              {% for message in messages %}
+            <div class="mb-3" style="color:red">
+                <h4>{{message}}</h4>
+            
+             </div>
+             {% endfor %}
             </div>
 
-            {% for message in messages %}
-            <div class="container section-title" style="color:red">
-                <h4>{{message}}</h4>
-            {% endfor %}
-             </div>
+            
           </div>
 
           

@@ -12,6 +12,7 @@ from django.views.generic import FormView, UpdateView
 from django.contrib.auth.forms import UserCreationForm
 from django.middleware.csrf import get_token
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LogoutView, PasswordChangeView
 
 # Create your views here.
 
@@ -76,10 +77,14 @@ class LoginView(View):
 
         
 
-@login_required
-def logout_user(request):
-    logout(request)
-    return redirect("home:home")
+class LogoutView(LogoutView):
+    next_page = "/"
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['message'] = 'You have been Logged out'
+    #     return context
+
 
 
 class EditProfileView(LoginRequiredMixin, UpdateView):
@@ -106,28 +111,35 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
     
 
 
-# class ChangePasswordView(LoginRequiredMixin, FormView):
+class ChangePasswordView(LoginRequiredMixin,FormView):
 
-#     form_class = ChangePassForm
-#     template_name = "accounts/change_password.html"
-#     success_url="/"
+    form_class = ChangePassForm
+    template_name = "accounts/change_password.html"
+    success_url="/"
 
 
-#     def get_form_kwargs(self):
-#         kwargs = super().get_form_kwargs()
-#         kwargs['user'] = self.request.user
-#         return kwargs
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
     
 
-#     def form_valid(self, form):
-#         form.save()
-#         update_session_auth_hash(self.request, self.request.user)
-#         messages.add_message(self.request, messages.SUCCESS, "Your password has been successfully updated")
-#         return super().form_valid(form)
+    def form_valid(self, form):
+        user = self.request.user
+        new_password = form.cleaned_data['password1']
+
+        user.set_password(new_password)
+        user.save()
+        update_session_auth_hash(self.request, user)
+        messages.add_message(self.request, messages.SUCCESS, "Your password was successfully updated!")
+        return super().form_valid(form)
     
-#     def form_invalid(self, form):
-#         messages.add_message(self.request, messages.ERROR, "Please correct the errors")
-#         return redirect(self.request.path_info)
+
+
+    def form_invalid(self, form):
+        print("forms errors", form.errors)
+        messages.add_message(self.request, messages.ERROR, "Please correct the errors")
+        return redirect(self.request.path_info)
     
 
 
