@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from service.models import Service, Special_services
 from portfolio.models import Category
+from accounts.models import User
+
 
 class ServiceSerializer(serializers.ModelSerializer):
     category = serializers.PrimaryKeyRelatedField(many=True, queryset=Category.objects.all())  
@@ -18,3 +20,4 @@ class ServiceSerializer(serializers.ModelSerializer):
         rep["specials"] = [special.title for special in instance.specials.all()]
         
         return rep
+
