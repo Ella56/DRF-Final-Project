@@ -12,7 +12,7 @@ from django.views.generic import FormView, UpdateView
 from django.contrib.auth.forms import UserCreationForm
 from django.middleware.csrf import get_token
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LogoutView, PasswordChangeView
+from django.contrib.auth.views import LogoutView, PasswordResetView as BasedPasswordResetView
 
 # Create your views here.
 
@@ -73,6 +73,9 @@ class LoginView(View):
             
 
         # elif "reset-password" in request.POST:
+        #     form = ResetPassForm
+        #     if form.is_valid():
+        #         return redirect()
 
 
         
@@ -146,4 +149,12 @@ class ChangePasswordView(LoginRequiredMixin,FormView):
 
     
 
-    
+# class ResetPassView(BasedPasswordResetView):
+#     template_name = "accounts/login.html"
+#     email_template_name= "accounts/reset-password-confirm.html"
+#     success_url = "/"
+
+
+#     def form_valid(self, form):
+#         messages.add_message(self.request, messages.SUCCESS, "YWe,ve emailed you instructions for reseting  your password")
+#         return super().form_valid(form)

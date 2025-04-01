@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from .models import User, Profile
 from django.contrib.auth import password_validation
 
@@ -15,8 +15,7 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ["email", "password1", "password2"]
 
-class ResetPassForm(forms.Form):
-    email = forms.EmailField()
+
 
 
 
@@ -64,6 +63,11 @@ class ChangePassForm(forms.Form):
     #     self.fields['new_password2'].label="Confirm_New_Password"
     
 
+
+class ResetPassForm(PasswordResetForm):
+    def get_users(self, email):
+        return User.objects.filter(email=email, is_active=True)
+    
 
 class ConfirmPassForm(forms.Form):
     pass1 = forms.CharField(max_length=15)
