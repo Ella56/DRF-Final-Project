@@ -86,13 +86,11 @@
 
             <li><a href={% url 'home:contact' %}>Contact</a></li>
 
-            {% if request.user.is_authenticated %}
-            <li><a href="#">logged as {{ request.user.email }}</a></li>
+            
+            <li><a href="#">logged as </a></li>
             <li><a href={% url "accounts:edit-profile" %}>Profile</a></li>
             <li><a href={% url "accounts:logout" %}>logout</a></li>
-            {% else %}
             <li><a href={% url "accounts:login-signup" %}>Login/Sign Up</a></li>
-            {% endif %}
             <li><a href="cart.html">Cart items</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
