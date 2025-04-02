@@ -7,8 +7,12 @@
 <br>
 <br>
 <br>
-
-<h3>payment error {{error}}</h3>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Complete your purchase</button>
+</form>
 
 <br>
 <br>

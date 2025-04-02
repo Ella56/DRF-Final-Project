@@ -38,8 +38,22 @@
                 <h3>{{ service_item.title}}</h3>
               </a>
               <p>{{ service_item.truncate_chars }}</p>
+              <h3>{{ service_item.price}}</h3>
             </div>
           </div>
+          <div class="product">
+            <form  method="post">
+              {% csrf_token %}
+              <input type="hidden" name="product_id" value={{service_item.id}}> <!-- آی‌دی محصول --> 
+              <div class="quantity-container">
+                  <button type="button" class="decrement">-</button>
+                  <input type="text" name="quantity" class="quantity" value="1" >
+                  <button type="button" class="increment">+</button>
+              </div>  
+              <button type="submit">Add to card</button>
+            </form>
+          </div>    
+        </div><!-- End Service Item -->
           
           {% endfor %}
           <!-- End Service Item -->

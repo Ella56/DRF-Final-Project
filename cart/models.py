@@ -1,5 +1,5 @@
 from django.db import models
-from portfolio.models import Portfolio
+from service.models import Service
 from accounts.models import User,Profile
 
 # Create your models here.
@@ -43,10 +43,10 @@ class Order(models.Model):
 
 
 class Order_item(models.Model):
-    order=models.ForeignKey(Order,on_delete=models.CASCADE)
-    product=models.ForeignKey(Portfolio,on_delete=models.CASCADE)
-    price=models.IntegerField()
-    quantity=models.IntegerField()
+    order=models.ForeignKey(Order,on_delete=models.CASCADE , related_name="items")
+    product=models.ForeignKey(Service,on_delete=models.CASCADE)
+    price=models.IntegerField(default=0)
+    quantity=models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.quantity} of {self.product.title}"
