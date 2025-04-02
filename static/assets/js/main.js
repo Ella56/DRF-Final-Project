@@ -46,6 +46,9 @@
 
   });
 
+
+  
+
   /**
    * Toggle mobile nav dropdowns
    */
@@ -139,6 +142,25 @@
         sortBy: sort
       });
     });
+    document.querySelectorAll(".product").forEach(product => {
+      const incrementBtn = product.querySelector(".increment");
+      const decrementBtn = product.querySelector(".decrement");
+      const quantityInput = product.querySelector(".quantity");
+  
+      incrementBtn.addEventListener("click", () => {
+          let currentValue = parseInt(quantityInput.value, 10);
+          quantityInput.value = currentValue + 1;
+          console.log("inc")
+          
+      });
+  
+      decrementBtn.addEventListener("click", () => {
+          let currentValue = parseInt(quantityInput.value, 10);
+          if (currentValue > 1) {
+              quantityInput.value = currentValue - 1;
+          }
+      });
+  });
 
     isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
       filters.addEventListener('click', function() {
@@ -171,6 +193,7 @@
         }
     });
 });
+
 
   /**
    * Animate the skills items on reveal

@@ -22,6 +22,7 @@ class Service(models.Model):
     content_three=models.TextField()
     specials=models.ManyToManyField(Special_services)
     status=models.BooleanField(default=False)
+    price = models.PositiveIntegerField(default=0)
 
 
     def __str__(self):
