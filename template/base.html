@@ -93,7 +93,7 @@
             {% else %}
             <li><a href={% url "accounts:login-signup" %}>Login/Sign Up</a></li>
             {% endif %}
-            <li><a href="cart.html">Cart items</a></li>
+            <a href={% url 'cart:cart_view' %}>see {{cart_items}} in your cart</a>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>

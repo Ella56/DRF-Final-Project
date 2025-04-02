@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     'captcha',
-    'mail_templated'
+    'mail_templated',
 ]
 
 MIDDLEWARE = [
