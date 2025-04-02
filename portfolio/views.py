@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from .models import Portfolio
 
@@ -22,3 +22,25 @@ class PortfolioView(ListView):
 class PortfolioDetailsView(DetailView):
    model = Portfolio
    template_name = 'portfolio/portfolio-details.html'
+
+   def post(self , request , *args , **kwargs):
+         
+        cart = request.session.get("cart")
+        if cart is None:
+            request.session["cart"] = {}
+            request.session.modified = True
+            cart = request.session.get("cart")
+        id = int(request.POST["product_id"])
+        quantity = int(request.POST["quantity"])
+
+        if id in cart:
+              del cart[id]
+              id = int(request.POST["product_id"])
+              cart[id] = int(quantity)
+              request.session.modified = True
+        else :
+              cart[id] = int(quantity)
+              request.session.modified = True
+
+        return redirect(request.path_info)
+

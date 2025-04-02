@@ -65,8 +65,7 @@ class ChangePassForm(forms.Form):
 
 
 class ResetPassForm(PasswordResetForm):
-    def get_users(self, email):
-        return User.objects.filter(email=email, is_active=True)
+    email = forms.EmailField(max_length=150, label='Email')
     
 
 class ConfirmPassForm(forms.Form):
