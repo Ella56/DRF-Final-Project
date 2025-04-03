@@ -37,7 +37,7 @@
                   <article>
 
                     <div class="post-img">
-                      <img src={{object.image.url}} alt="" class="img-fluid">
+                      <img src={{blog.image_one.url}} alt="" class="img-fluid">
                     </div>
 
                     <h2 class="title">
@@ -72,9 +72,9 @@
 
           </section><!-- /Blog Posts Section -->
 
-          <!-- Blog Pagination Section -->
+          <!-- Blog Pagination Section --> {% if blogs.paginate.num_pages > 1 %}
           <section id="blog-pagination" class="blog-pagination section">
-            {% if blogs.paginator.num_pages > 1 %}
+           
 
             <div class="container">
               <div class="d-flex justify-content-center">
@@ -92,9 +92,9 @@
                 </ul>
               </div>
             </div>
-                {% endif %}
+           
           </section><!-- /Blog Pagination Section -->
-    
+         {% endif %}
 
         </div>
 
@@ -119,8 +119,8 @@
               <h3 class="widget-title">Categories</h3>
               
               <ul class="mt-3">
-                {% for cat in object.category.all %}
-                <li><a href="#">{{ cat.name }}<span>(25)</span></a></li>
+                {% for cat in category %}
+                <li><a href="">>{{ cat.name }}<span>(25)</span></a></li>
     
                 {% endfor %}
               </ul>
@@ -146,13 +146,13 @@
             <div class="tags-widget widget-item">
 
               <h3 class="widget-title">Tags</h3>
-              {% for tag in object.tag.all %}
+              {% for tag in tag %}
               <ul>
-                <li><a href="#">{{ tag.name }}</a></li>
+                <li><a href=>{{ tag.name }}</a></li>
               </ul>
               {% endfor %}
 
-            </div><!--/Tags Widget -->
+            </div><!--/Tags Widget-->
 
           </div>
 
