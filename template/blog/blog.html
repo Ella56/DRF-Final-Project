@@ -78,15 +78,19 @@
 
             <div class="container">
               <div class="d-flex justify-content-center">
+
                 <ul>
-                  <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#" class="active">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li>...</li>
-                  <li><a href="#">10</a></li>
-                  <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
+                  {% if page_obj.has_next and page_obj.has_previous %}
+                  <li><a href="{% url 'blog:blog' %}?page={{blog.previous_page_number}}"><i class="bi bi-chevron-left"></i></a></li>
+                  <li><a href="{% url 'blog:blog' %}?page={{first}}">1</a></li>
+                  <li><a href="{% url 'blog:blog' %}?page={{blog.next_page_number}}"><i class="bi bi-chevron-right"></i></a></li>
+                  {% elif page_obj.has_next %}
+                  <li><a href="{% url 'blog:blog' %}?page={{blog.next_page_number}}"><i class="bi bi-chevron-right"></i></a></li>
+                  {% elif page_obj.has_previous %}
+                  <li><a href="{% url 'blog:blog' %}?page={{blog.previous_page_number}}"><i class="bi bi-chevron-left"></i></a></li>
+                  <li><a href="{% url 'blog:blog' %}?page={{first}}">1</a></li>
+                
+                  {% endif %}
                 </ul>
               </div>
             </div>
