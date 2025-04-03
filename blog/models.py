@@ -1,15 +1,9 @@
 from django.db import models
-from accounts.models import User
+from accounts.models import Profile
 
 # Create your models here.
 
 
-class Subject(models.Model):
-    title=models.CharField(max_length=100)
-    status=models.BooleanField(default=True)
-
-    def __str__(self):
-        return self.title
 
 class Tag(models.Model):
     name=models.CharField(max_length=100)
@@ -45,7 +39,6 @@ class Blog(models.Model):
     image_two=models.ImageField(upload_to="blog",default="default.jpg")
     mini_title=models.CharField(max_length=100)
     content_three=models.TextField(default="")
-    subject=models.ForeignKey(Subject,on_delete=models.CASCADE)
     tag=models.ManyToManyField(Tag)
     category=models.ForeignKey(Blog_category,on_delete=models.CASCADE)
     author=models.ForeignKey(Author,on_delete=models.CASCADE)
@@ -57,18 +50,39 @@ class Blog(models.Model):
     def truncate_chars(self):
         return self.content_one[:100]
 
+    def get_comments(self):
+        return self.comments.filter(status=True)
+    
+    def comment_count(self):
+        return self.comments.count()
 
+    
 
 class Comment(models.Model):
-    blog=models.ForeignKey(Blog, on_delete=models.CASCADE, related_name="comments")
-    name=models.ForeignKey(User,on_delete=models.CASCADE)
-    email=models.EmailField()
-    website=models.URLField()
-    content=models.TextField(default="")
-    parent=models.ForeignKey("self", on_delete=models.CASCADE,related_name="replies")
-    created_at=models.DateTimeField(auto_now_add=True)
-    status=models.BooleanField(default=False)
-
+    blog = models.ForeignKey(Blog, related_name='comments', on_delete=models.CASCADE)
+    name = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    website = models.URLField()
+    email = models.EmailField()
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    status = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Comment by {self.name} on {self.blog.title}"
+        return self.name.user.email
+    
+    def get_replays(self):
+        return self.replays.filter(status=True)
+    
+class Reply(models.Model):
+    comment = models.ForeignKey(Comment, related_name='replays', on_delete=models.CASCADE)
+    name = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    email = models.EmailField()
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    status = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name.user.email
+    
