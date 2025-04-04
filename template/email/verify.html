@@ -5,5 +5,28 @@ Hello {{ user.email }}
 {% endblock %}
 
 {% block html %}
-for verify your email click <a href="http://127.0.0.1:8000/accounts/api/v1/verify-done/{{token}}">here for 2 minuts</a>
+<main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Verify Email</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{% url 'home:home'}">Home</a></li>
+            <li class="current">Verify Email</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+    <section id="team" class="team section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Reset Password-Verify Email</h2>
+        <p>to verify your email click <a href="http://127.0.0.1:8000/accounts/api/v1/verify-done/{{token}}">here for 2 minuts</a></p>
+    </div>
+
+    </section>  
+
 {% endblock %}

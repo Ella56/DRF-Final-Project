@@ -5,6 +5,7 @@ from .forms import ContactForm
 from django.contrib import messages
 from .models import Team, Client, Testimonials
 from service.models import Service
+from portfolio.models import Portfolio
 
 
 # Create your views here.
@@ -14,6 +15,8 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context ['services'] = Service.objects.filter(status=True)[:3]
+        context ['portfolio'] = Portfolio.objects.filter(status=True)[:3]
+        context["clients"] = Client.objects.filter(status=True)[:6]
 
         return context
 
