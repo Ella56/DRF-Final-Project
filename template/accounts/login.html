@@ -35,6 +35,8 @@
           </ul>
     
           <div class="tab-content" id="authTabsContent">
+
+            
             <!-- Login Form -->
 
             <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
@@ -56,8 +58,15 @@
                 {% endif %}
               </div>
               </form>
+              {% for message in messages %}
+              <div class="mb-3" style="color:red">
+                  <h4>{{message}}</h4>
+              
             </div>
-    
+            {% endfor %}
+
+
+
             <!-- Sign Up Form -->
             <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
               <form method="post" action="">
@@ -81,25 +90,33 @@
                 {% endif %}
                 
               </form>
+              {% for message in messages %}
+              <div class="mb-3" style="color:red">
+                  <h4>{{message}}</h4>
+              
             </div>
-    
+            {% endfor %}
+
+
             <!-- Forgot Password Form -->
             <div class="tab-pane fade" id="forgot" role="tabpanel" aria-labelledby="forgot-tab">
-              <form method="post" action="">
+              <form method="post">
                 {% csrf_token %}
                 <div class="mb-3">
-                  <label for="forgotEmail" class="form-label">Email address</label>
-                  <input type="email" name="email" class="form-control" id="forgotEmail" placeholder="Enter your email to reset password">
+                  <label for="reset-password" class="form-label">Email address</label>
+                  <input type="email" name="email" class="form-control" id="reset-password" placeholder="Enter your email to reset password">
                 </div>
                 <button type="submit" class="btn btn-warning w-100" name="reset-password">Reset Password</button>
               </form>
+              {% for message in messages %}
+            <div class="mb-3" style="color:red">
+                <h4>{{message}}</h4>
+            
+             </div>
+             {% endfor %}
             </div>
 
-            {% for message in messages %}
-            <div class="container section-title" style="color:red">
-                <h4>{{message}}</h4>
-            {% endfor %}
-             </div>
+            
           </div>
 
           

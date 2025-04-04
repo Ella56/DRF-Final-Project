@@ -1,9 +1,46 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block 'title' %}Email Verification{% endblock 'title' %}
+{% block 'content' %}
 {% extends "mail_templated/base.tpl" %}
+
+
+
 
 {% block subject %}
 Hello {{ user.name }}
 {% endblock %}
 
 {% block html %}
-<a href="http://127.0.0.1:8000/accounts/api/v1/reset-password-done/{{token}}">click here for reset password</a>
+
+<main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Email</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{% url 'home:home'}">Home</a></li>
+            <li class="current">Email</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+    <section id="team" class="team section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Reset Password</h2>
+    <p><a href="http://127.0.0.1:8000/accounts/api/v1/reset-password-done/{{token}}">click here for reset password</a></p>
+  </div>
+
+</section>  
+
 {% endblock %}
+
+
+
+
+{% endblock 'content' %}

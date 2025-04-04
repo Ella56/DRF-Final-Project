@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django_filters',
     'captcha',
     'mail_templated',
+
 ]
 
 MIDDLEWARE = [
@@ -164,3 +165,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+# SESSION_COOKIE_AGE = 60
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
