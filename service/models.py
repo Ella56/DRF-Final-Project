@@ -6,7 +6,7 @@ from portfolio.models import Category
 
 class Special_services(models.Model):
     title=models.CharField(max_length=100)
-    status=models.BooleanField(default=False)
+    status=models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
@@ -21,7 +21,8 @@ class Service(models.Model):
     category=models.ManyToManyField(Category)
     content_three=models.TextField()
     specials=models.ManyToManyField(Special_services)
-    status=models.BooleanField(default=False)
+    status=models.BooleanField(default=True)
+
 
 
     def __str__(self):

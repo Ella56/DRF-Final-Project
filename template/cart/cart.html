@@ -1,30 +1,92 @@
 {% extends "base.html" %}
 {% load static %}
-{% block 'title' %}Cart{% endblock 'title' %}
+{% block 'title' %}cart{% endblock 'title' %}
 {% block 'content' %}
 
 
-  <!-- Main Section -->
-  <main class="main">
-    <div class="container py-5">
-      <h1 class="mb-4">Shopping Cart</h1>
-      <div class="row">
-        <div class="col-lg-8">
-          <ul class="list-group" id="cart-items">
-            <li><h4>Name Item - Quantity 1 - price 1000 $</h4></li>
-            <li><h4>Name Item - Quantity 2 - price 2000 $</h4></li>
-            <li><h4>Name Item - Quantity 3 - price 3000 $</h4></li>
-            <li><h4>Name Item - Quantity 4 - price 4000 $</h4></li>
-          </ul>
-        </div>
-        <div class="col-lg-4">
-          <div class="card p-3">
-            <h3>Total: $<span id="total-price">10000.00</span></h3>
-            <a href="#" class="btn btn-primary w-100" >Proceed to Checkout</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+<main class="main">
 
+    <!-- Page Title -->
+    <div class="page-title dark-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Cart</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="home:home">Home</a></li>
+            <li class="current">Cart</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+    <section id="contact" class="contact section">
+
+        <div class="mb-5">
+   
+        </div>
+  
+        <div class="container" data-aos="fade">
+  
+          <div class="row gy-5 gx-lg-5">
+  
+            <div class="col-lg-4">
+                {% for item in portfolio_list %}
+  
+              <div class="info">
+                <h3>Your Items</h3>
+                <p>Yor cart includes: </p>
+  
+                <div class="info-item d-flex">
+                  <i class="bi bi-cart-check flex-shrink-0"></i>
+                  <div>
+                    <h4>Product:</h4>
+                    <p>{{item.portfolio.title}}</p>
+                  </div>
+                </div><!-- End product Item -->
+  
+                <div class="info-item d-flex">
+                  <i class="bi bi-currency-dollar  flex-shrink-0"></i>
+                  <div>
+                    <h4>Price</h4>
+                    <p>{{item.portfolio.price}}</p>
+                  </div>
+                </div><!-- End product price Item -->
+  
+                <div class="info-item d-flex">
+                    <i class="bi bi-check2-circle flex-shrink-0"></i>
+                    <div>
+                      <h4>Quantity</h4>
+                      <p>{{item.quantity}}</p>
+                    </div>
+                  </div><!-- End quantity Item -->
+
+                <div class="info-item d-flex">
+                  <i class="bi bi-currency-dollar flex-shrink-0"></i>
+                  <div>
+                    <h4>Total Price:</h4>
+                    <p>{{item.total_price}}</p>
+                  </div>
+                </div><!-- End total price Item -->
+  
+              </div>
+               {% endfor %}
+            </div>
+  
+            <div class="col-lg-8">
+              <h1>your total price is  {{total}}</h1>
+              
+              <form action="{% url "cart:checkout" %}">
+                <br>
+                <div class="text-left">
+                    <button type="submit" class="btn btn-danger">Checkout</button>
+                  </div>
+            </form>
+            </div>
+  
+          </div>
+  
+        </div>
+  
+      </section>
+
+</main>
 {% endblock 'content' %}
