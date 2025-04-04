@@ -78,10 +78,11 @@
 
             <li class="dropdown"><a href="#"><span>Category</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
-                {% for category in categories %}
+              {% for category in categories %}  
                 <li><a href={% url 'portfolio:portfolio-category' category=category.name %}>{{category.name}}</a></li>
-                {% endfor %}
+               {% endfor %}
               </ul>
+               
             </li>
 
             <li><a href={% url 'home:contact' %}>Contact</a></li>

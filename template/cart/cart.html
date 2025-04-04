@@ -2,33 +2,91 @@
 {% load static %}
 {% block 'title' %}cart{% endblock 'title' %}
 {% block 'content' %}
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<h1>your itesm</h1>
 
-{% for item in service_list %}
-<p>{{item.service.title}}</p>
-<p>{{item.service.price}}</p>
-<p>{{item.quantity}}</p>
-<p>{{item.total_price}}</p>
-<p>==================================</p>
+<main class="main">
 
-{% endfor %}
+    <!-- Page Title -->
+    <div class="page-title dark-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Cart</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="home:home">Home</a></li>
+            <li class="current">Cart</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+    <section id="contact" class="contact section">
 
-<h1>your totalprice is {{total}}</h1>
+        <div class="mb-5">
+   
+        </div>
+  
+        <div class="container" data-aos="fade">
+  
+          <div class="row gy-5 gx-lg-5">
+  
+            <div class="col-lg-4">
+                {% for item in portfolio_list %}
+  
+              <div class="info">
+                <h3>Your Items</h3>
+                <p>Yor cart includes: </p>
+  
+                <div class="info-item d-flex">
+                  <i class="bi bi-cart-check flex-shrink-0"></i>
+                  <div>
+                    <h4>Product:</h4>
+                    <p>{{item.portfolio.title}}</p>
+                  </div>
+                </div><!-- End product Item -->
+  
+                <div class="info-item d-flex">
+                  <i class="bi bi-currency-dollar  flex-shrink-0"></i>
+                  <div>
+                    <h4>Price</h4>
+                    <p>{{item.portfolio.price}}</p>
+                  </div>
+                </div><!-- End product price Item -->
+  
+                <div class="info-item d-flex">
+                    <i class="bi bi-check2-circle flex-shrink-0"></i>
+                    <div>
+                      <h4>Quantity</h4>
+                      <p>{{item.quantity}}</p>
+                    </div>
+                  </div><!-- End quantity Item -->
 
-<p>==================================</p>
+                <div class="info-item d-flex">
+                  <i class="bi bi-currency-dollar flex-shrink-0"></i>
+                  <div>
+                    <h4>Total Price:</h4>
+                    <p>{{item.total_price}}</p>
+                  </div>
+                </div><!-- End total price Item -->
+  
+              </div>
+               {% endfor %}
+            </div>
+  
+            <div class="col-lg-8">
+              <h1>your total price is  {{total}}</h1>
+              
+              <form action="{% url "cart:checkout" %}">
+                <br>
+                <div class="text-left">
+                    <button type="submit" class="btn btn-danger">Checkout</button>
+                  </div>
+            </form>
+            </div>
+  
+          </div>
+  
+        </div>
+  
+      </section>
 
-<form action="{% url "cart:checkout" %}">
-    <button type="submit">complete info</button>
-</form>
-
-<br>
-<br>
-<br>
-<br>
+</main>
 {% endblock 'content' %}

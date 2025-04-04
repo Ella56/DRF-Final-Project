@@ -16,6 +16,7 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context ['services'] = Service.objects.filter(status=True)[:3]
         context ['portfolio'] = Portfolio.objects.filter(status=True)[:3]
+        context["clients"] = Client.objects.filter(status=True)[:6]
 
         return context
 
