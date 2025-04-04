@@ -34,12 +34,13 @@
               <div class="icon">
                 <i class="bi bi-activity"></i>
               </div>
-              <a href="#" class="stretched-link">
+              <a href="{% url 'service:service-details' service_item.id %}" class="stretched-link">
                 <h3>{{ service_item.title}}</h3>
               </a>
               <p>{{ service_item.truncate_chars }}</p>
             </div>
           </div>
+        </div><!-- End Service Item -->
           
           {% endfor %}
           <!-- End Service Item -->

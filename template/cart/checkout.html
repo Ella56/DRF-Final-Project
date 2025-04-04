@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'title' %}cart{% endblock 'title' %}
+{% block 'content' %}
+<main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Checkout</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="home:home">Home</a></li>
+            <li class="current">Checkout</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+    <section id="contact" class="contact section">
+
+        <div class="mb-5">
+   
+        </div>
+  
+        <div class="container" data-aos="fade">
+  
+  
+            <div class="col-lg-8">
+              <h1>your total price is  {{total}}</h1>
+              
+             <form method="post">
+                <br> {% csrf_token %}
+                        {{form.as_p}}
+
+                <div class="text-left">
+                    <button type="submit" class="btn btn-danger">Complete your purchase</button>
+                  </div>
+            </form>
+            </div>
+  
+          </div>
+  
+        </div>
+  
+      </section>
+
+</main>
+
+   
+<br>
+<br>
+
+
+
+{% endblock 'content' %}

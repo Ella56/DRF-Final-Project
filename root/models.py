@@ -30,7 +30,7 @@ class Team(models.Model):
     instagram=models.CharField(max_length=100)
     linkdin=models.CharField(max_length=100)
     facebook=models.CharField(max_length=100)
-    status=models.BooleanField(default=False)
+    status=models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
@@ -40,7 +40,7 @@ class Team(models.Model):
 class Client(models.Model):
     name=models.CharField(max_length=100)
     logo=models.ImageField(upload_to="client",default="default.jpg")
-    status=models.BooleanField(default=False)
+    status=models.BooleanField(default=True)
     
     def __str__(self):
         return self.name
@@ -59,7 +59,7 @@ class Testimonials(models.Model):
      image=models.ImageField(upload_to="testimonials",default="default.jpg")
      stars=models.ForeignKey(Star,on_delete=models.CASCADE)
      content=models.TextField()
-     status=models.BooleanField(default=False)
+     status=models.BooleanField(default=True)
     
 
      def __str__(self):
