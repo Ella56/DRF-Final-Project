@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404 , redirect
 from django.views.generic import ListView, DetailView
 from .models import Service,Special_services,Category
 # Create your views here.
@@ -14,7 +14,10 @@ class ServiceView(ListView):
         services = Service.objects.filter(status=True)
 
         return services
+    
 
+
+    
 
 
 class ServiceDetailView(DetailView):
