@@ -44,7 +44,7 @@
               <img src={{portfolio.image1.url}} class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>{{ portfolio.title}}</h4>
-                <p>portfolio.truncate_chars</p>
+                <p>{{portfolio.truncate_chars}}</p>
                 <a href={{portfolio.image_one.url}} title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="{% url 'portfolio:portfolio-details' portfolio.id %}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>

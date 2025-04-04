@@ -21,8 +21,6 @@ class BlogView(ListView):
             blogs = self.model.objects.filter(category__name=self.kwargs.get("category"))
         elif self.kwargs.get("tag"):
             blogs = self.model.objects.filter(tag__name=self.kwargs.get("tag"))
-            # elif self.kwargs.get("name"):
-            #blogs = Blog.objects.filter(creator__user__email=self.kwargs.get("name"), status=True)
         elif self.request.GET.get("search"):
             search = self.request.GET.get("search")
             blogs = self.model.objects.filter(title_contains=search, status=True)
@@ -33,8 +31,8 @@ class BlogView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category'] = Blog_category.objects.filter(status=True)
         context['tag'] = Tag.objects.filter(status=True)
+        context['category'] = Blog_category.objects.filter(status=True)
         category_id= self.kwargs.get('category_id')
         if category_id:
             context['selected_category'] = Blog_category.objects.get(id=category_id)
@@ -46,9 +44,10 @@ class BlogView(ListView):
         last = blogs_paginate.num_pages
         context['first'] = first
         context['last'] = last
-        
-        
         return context
+    
+
+       
     
 
 
