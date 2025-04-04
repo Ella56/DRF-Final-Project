@@ -43,7 +43,7 @@ class Order(models.Model):
 
 
 class Order_item(models.Model):
-    order=models.ForeignKey(Order,on_delete=models.CASCADE)
+    order=models.ForeignKey(Order,on_delete=models.CASCADE , related_name="items")
     product=models.ForeignKey(Portfolio,on_delete=models.CASCADE)
     price=models.IntegerField()
     quantity=models.IntegerField()
